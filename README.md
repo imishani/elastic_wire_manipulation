@@ -36,4 +36,4 @@ cable properties approximator
 ```sh
 rosrun motoman_cable approx_c_live.py
 ```
-* [learning_wire](learning_wire): Learning techniques to predict the shape of the wire based on Force Torque feedback.
+* [learning_wire](learning_wire): Deep learning techniques to predict the shape of the wire based on Force Torque feedback.
