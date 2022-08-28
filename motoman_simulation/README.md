@@ -3,11 +3,11 @@ Visualization and Control Package
 
 After loading the environment use the following scripts as follows:
 
-* [cable_markers](scripts/cable_markers.py): For adding marker line which uses the analytical model [rodeval.py](scripts/rodeval.py) to predict the shape of the wire based on the F/T feedback.
+* [cable_markers](scripts/cable_markers.py): For adding to Rviz a marker line which uses the analytical model [rodeval.py](scripts/rodeval.py) to predict the shape of the wire based on the F/T feedback.
 ```sh
 rosrun motoman_simulation cable_makers.py
 ```
-* [cable_markers_nn_direct](scripts/cable_markers_nn_direct.py): For adding marker line which uses the learned model [learning_wire](../learning_wire) to predict the shape of the wire based on the F/T feedback.
+* [cable_markers_nn_direct](scripts/cable_markers_nn_direct.py): For adding to Rviz a marker line which uses the learned model [learning_wire](../learning_wire) to predict the shape of the wire based on the F/T feedback.
 ```sh
 rosrun motoman_simulation cable_makers_nn_direct.py
 ```
