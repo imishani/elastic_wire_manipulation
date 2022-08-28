@@ -1,0 +1,92 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:macro name="torso" params="name prefix">
+    <!-- link list -->
+    <link name="${prefix}base_link">
+      <visual>
+        <geometry>
+          <mesh filename="package://motoman_sda10f_support/meshes/sda10f/visual/base.stl" />
+        </geometry>
+        <material name="blue">
+          <color rgba="0 0 1 1"/>
+        </material>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://motoman_sda10f_support/meshes/sda10f/collision/base.stl" />
+        </geometry>
+      </collision>
+      <inertial>
+            <mass value="68.0"/>
+        <origin xyz="0.0508 -0.00001 0.33388" rpy="0 0 0"/>
+        <inertia ixx="12.645776" ixy="-6.14E-05" ixz="1.691224" iyy="12.88864" iyz="6.68E-05" izz="1.280156"/>
+        </inertial>
+    </link>
+    <gazebo reference="${prefix}base_link">
+		<static>true</static>
+		<material>Gazebo/Blue</material>
+    <maxVel>0.0</maxVel>
+    <minDepth>0.001</minDepth>
+	</gazebo>
+
+    <link name="${prefix}link_b1">
+      <visual>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <mesh filename="package://motoman_sda10f_support/meshes/sda10f/visual/link_b1.stl"/>
+        </geometry>
+        <material name="silver">
+          <color rgba="0.8 0.8 0.8 1"/>
+        </material>
+      </visual>
+      <collision>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <mesh filename="package://motoman_sda10f_support/meshes/sda10f/collision/link_b1.stl" />
+        </geometry>
+      </collision>
+      <inertial>
+      <mass value="52.0"/>
+        <origin xyz="0.05378 0.0000034 0.24362" rpy="0 0 0"/>
+        <inertia ixx="4.132762" ixy="0.000011" ixz="0.943678" iyy="4.366928" iyz="0.000039" izz="0.697600"/>
+        </inertial>
+    </link>
+
+    <gazebo reference="${prefix}link_b1">
+		<static>true</static>
+    <maxVel>0.0</maxVel>
+    <minDepth>0.001</minDepth>
+	</gazebo>
+    <link name="${prefix}link_b2"/>
+
+    <!-- joint list -->
+    <joint name="${prefix}joint_b1" type="revolute">
+      <parent link="${prefix}base_link"/>
+      <child link="${prefix}link_b1"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <axis xyz="0 0 1" />
+      <limit lower="${radians(-170)}" upper="${radians(170)}" effort="100" velocity="${radians(130)}" />
+      <dynamics damping="0.5"/>
+    </joint>
+    <joint name="${prefix}joint_b2" type="revolute">
+      <parent link="${prefix}base_link"/>
+      <child link="${prefix}link_b2"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <axis xyz="0 0 1" />
+      <limit lower="${radians(-170)}" upper="${radians(170)}" effort="100" velocity="${radians(130)}" />
+      <mimic joint="${prefix}joint_b1" multiplier="1" offset="0"/>
+      <dynamics damping="0.5"/>
+    </joint>
+    <!-- end of joint list -->
+
+      <transmission name="${prefix}tran_torso">
+		  <type>transmission_interface/SimpleTransmission</type>
+		  <joint name="${prefix}joint_b1">
+		  <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+		  </joint>
+		  <actuator name="${prefix}motor_torso">
+		  <mechanicalReduction>1</mechanicalReduction>
+	  	</actuator>
+    	</transmission>
+  </xacro:macro>
+</robot>

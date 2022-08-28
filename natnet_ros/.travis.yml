@@ -1,0 +1,12 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  # Build docker container with this repo in a catkin workspace, which runs 
+  # ci_test.sh when started
+  - docker build -t build_packages_and_run_tests . --file Dockerfile.travis
+
+script:
+  - docker run -it -v $(pwd):/catkin_ws/out build_packages_and_run_tests
+  - bash <(curl -s https://codecov.io/bash)

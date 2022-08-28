@@ -1,0 +1,3 @@
+<launch>
+    <node name="move_sda10f_home" pkg="motoman_gazebo" type="home_robot.py"/>
+</launch>

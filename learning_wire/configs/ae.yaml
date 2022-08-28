@@ -1,0 +1,40 @@
+models_names:
+  name1: 'SAEC'
+  name2: 'SAEL'
+  name3: 'VAE'
+
+model_params:
+  in_channels: 1
+  latent_dim: 6
+
+
+data_params:
+  train_batch_size: 64
+  val_batch_size:  64
+  patch_size: 64
+  epochs: 50
+
+
+vae_params:
+  LR: 0.0001
+  weight_decay: 0.0
+  scheduler_gamma: 0.95
+  kld_weight: 0.00025
+  manual_seed: 42
+
+sael_params:
+  LR: 0.0001
+  loss_weight: 3.1
+  beta1: 0.919
+  beta2: 0.964
+  weight_decay: 0.006
+  manual_seed: 42
+
+saec_params:
+  LR: 0.0001
+  loss_weight: 2.86
+  beta1: 0.935
+  beta2: 0.965
+  weight_decay: 0.008
+  manual_seed: 42
+

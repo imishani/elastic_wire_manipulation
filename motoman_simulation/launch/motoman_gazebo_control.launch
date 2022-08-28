@@ -1,0 +1,38 @@
+<launch>
+
+  <arg name="gripper" default=""/>
+  <!-- Load joint controller configurations from YAML file to parameter server -->
+  <rosparam file="$(find motoman_gazebo)/config/sda10f_gazebo_controller.yaml" command="load"/>
+
+  <!-- load the controllers -->
+  <node name="sda10f_controller_spawner" pkg="controller_manager"
+		type="spawner" output="screen"  ns = "/sda10f"
+		args="joint_state_controller
+			   sda10f_r1_controller
+         sda10f_r2_controller
+         sda10f_b1_controller
+          "/>
+
+  <!-- load other controllers -->
+
+  <!-- Start MoveIt main executable -->
+  <!-- TODO Find cleaner way to do that and that will work with other arms -->
+  <!-- Without gripper -->
+  <!-- <include file="$(find motoman_sda10f_moveit_config)/launch/move_group.launch" if="$(eval not arg('gripper'))"> 
+    -->
+  <!--</include> -->
+  <!-- With gripper -->
+  <!--<include file="$(find motoman_sda10f_moveit_config)/launch/move_group.launch" unless="$(eval not arg('gripper'))">
+      -->
+  <!--</include>-->
+
+  <!-- <node name="ros_control_controller_manager" pkg="controller_manager" type="controller_manager" respawn="false" output="screen" args="load joint_group_position_controller" /> -->
+  <!-- convert joint states to TF transforms for rviz, etc -->
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" ns = "/sda10f"
+		respawn="false" output="screen">
+    <remap from="joint_states" to="/sda10f/joint_states"/>
+  </node>
+
+  
+</launch>

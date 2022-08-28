@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+
+<robot name="motoman_sda10f" xmlns:xacro="http://ros.org/wiki/xacro">
+	<xacro:arg name="gripper" default="bota_sensor" />
+	<xacro:arg name="end_effector" default="white" />
+<!--	robotiq_ft_sensor-->
+	<xacro:include filename="$(find motoman_description)/urdf_for_cable/sda10f_macro.xacro" />
+	<xacro:motoman_sda10f prefix="" gripper="$(arg gripper)" end_effector="$(arg end_effector)"/>
+</robot>
+

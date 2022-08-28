@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: motoman_description
+    relative_path: urdf_for_cable/sda10f.xacro
+    xacro_args: ""
+  SRDF:
+    relative_path: config/motoman_sda10f.srdf
+  CONFIG:
+    author_name: Itamar Mishani
+    author_email: imishani@gmail.com
+    generated_timestamp: 1627906455

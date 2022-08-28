@@ -1,0 +1,98 @@
+sda10f:
+  
+  # Publish all joint states -----------------------------------
+  /sda10f/joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 50
+  # Trajectory Controllers
+  /sda10f/sda10f_r1_controller:
+    type: position_controllers/JointTrajectoryController
+    joints:
+        - arm_left_joint_1_s   
+        - arm_left_joint_2_l
+        - arm_left_joint_3_e
+        - arm_left_joint_4_u
+        - arm_left_joint_5_r
+        - arm_left_joint_6_b
+        - arm_left_joint_7_t
+    gains: # Required because we're controlling an effort interface
+      arm_left_joint_1_s: {p: 1000,  d: 10, i: 1, i_clamp: 1}
+      arm_left_joint_2_l: {p: 1000,  d: 10, i: 1, i_clamp: 1}
+      arm_left_joint_3_e: {p: 1000,  d: 10, i: 1, i_clamp: 1}
+      arm_left_joint_4_u: {p: 1000,  d: 10, i: 1, i_clamp: 1}
+      arm_left_joint_5_r: {p: 1000,  d: 10, i: 1, i_clamp: 1}
+      arm_left_joint_6_b: {p: 1000,  d: 10, i: 1, i_clamp: 1}
+      arm_left_joint_7_t: {p: 1000,  d: 10, i: 1, i_clamp: 1}
+    constraints:
+        goal_time: 0.6
+        # vel_tolerance is 0 for due to the movegroup/follow_joint_trajectory/goal tolerance is empty
+        stopped_velocity_tolerance: 0
+        arm_left_joint_1_s: {trajectory: 0.1, goal: 0.0}
+        arm_left_joint_2_l: {trajectory: 0.1, goal: 0.0}
+        arm_left_joint_3_e: {trajectory: 0.1, goal: 0.0}
+        arm_left_joint_4_u: {trajectory: 0.1, goal: 0.0}
+        arm_left_joint_5_r: {trajectory: 0.1, goal: 0.0}
+        arm_left_joint_6_b: {trajectory: 0.1, goal: 0.0}
+        arm_left_joint_7_t: {trajectory: 0.1, goal: 0.0}
+        
+
+  /sda10f/sda10f_r2_controller:
+    type: position_controllers/JointTrajectoryController
+    joints:
+        - arm_right_joint_1_s
+        - arm_right_joint_2_l
+        - arm_right_joint_3_e
+        - arm_right_joint_4_u
+        - arm_right_joint_5_r
+        - arm_right_joint_6_b
+        - arm_right_joint_7_t
+    gains: # Required because we're controlling an effort interface
+      arm_right_joint_1_s: {p: 1000,  d: 10, i: 1, i_clamp: 1}
+      arm_right_joint_2_l: {p: 1000,  d: 10, i: 1, i_clamp: 1}
+      arm_right_joint_3_e: {p: 1000,  d: 10, i: 1, i_clamp: 1}
+      arm_right_joint_4_u: {p: 1000,  d: 10, i: 1, i_clamp: 1}
+      arm_right_joint_5_r: {p: 1000,  d: 10, i: 1, i_clamp: 1}
+      arm_right_joint_6_b: {p: 1000,  d: 10, i: 1, i_clamp: 1}
+      arm_right_joint_7_t: {p: 1000,  d: 10, i: 1, i_clamp: 1}
+    constraints:
+        goal_time: 0.6
+        # vel_tolerance is 0 for due to the movegroup/follow_joint_trajectory/goal tolerance is empty
+        stopped_velocity_tolerance: 0
+        arm_right_joint_1_s: {trajectory: 0.1, goal: 0.0}
+        arm_right_joint_2_l: {trajectory: 0.1, goal: 0.0}
+        arm_right_joint_3_e: {trajectory: 0.1, goal: 0.0}
+        arm_right_joint_4_u: {trajectory: 0.1, goal: 0.0}
+        arm_right_joint_5_r: {trajectory: 0.1, goal: 0.0}
+        arm_right_joint_6_b: {trajectory: 0.1, goal: 0.0}
+        arm_right_joint_7_t: {trajectory: 0.1, goal: 0.0}
+
+  /sda10f/sda10f_b1_controller:
+    type: position_controllers/JointTrajectoryController
+    joints:
+        - torso_joint_b1
+    gains: # Required because we're controlling an effort interface
+      torso_joint_b1: {p: 1000,  d: 10, i: 1, i_clamp: 1}
+    constraints:
+        goal_time: 0.6
+        # vel_tolerance is 0 for due to the movegroup/follow_joint_trajectory/goal tolerance is empty
+        stopped_velocity_tolerance: 0
+        torso_joint_b1: {trajectory: 0.1, goal: 0.0}
+        
+  # /sda10f/gazebo_ros_control/pid_gains:
+  #     arm_left_joint_1_s: {p: 100,  i: 0.01, d: 10}
+  #     arm_left_joint_2_l: {p: 100,  i: 0.01, d: 10}
+  #     arm_left_joint_3_e: {p: 100,  i: 0.01, d: 10}
+  #     arm_left_joint_4_u: {p: 100,  i: 0.01, d: 10}
+  #     arm_left_joint_5_r: {p: 100,  i: 0.01, d: 10}
+  #     arm_left_joint_6_b: {p: 100,  i: 0.01, d: 10}
+  #     arm_left_joint_7_t: {p: 100,  i: 0.01, d: 10}
+  #     arm_right_joint_1_s: {p: 100,  i: 0.01, d: 10}
+  #     arm_right_joint_2_l: {p: 100,  i: 0.01, d: 10}
+  #     arm_right_joint_3_e: {p: 100,  i: 0.01, d: 10}
+  #     arm_right_joint_4_u: {p: 100,  i: 0.01, d: 10}
+  #     arm_right_joint_5_r: {p: 100,  i: 0.01, d: 10}
+  #     arm_right_joint_6_b: {p: 100,  i: 0.01, d: 10}
+  #     arm_right_joint_7_t: {p: 100,  i: 0.01, d: 10}
+  #     torso_joint_b1: {p: 100,  i: 0.01, d: 10}
+
+  allow_partial_joints_goal: True

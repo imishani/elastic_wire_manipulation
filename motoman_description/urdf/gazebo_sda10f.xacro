@@ -1,0 +1,26 @@
+<?xml version="1.0" ?>
+
+<robot name="motoman_sda10f" xmlns:xacro="http://ros.org/wiki/xacro">
+  
+    <xacro:arg name="gripper" default="bota_sensor" />
+    <xacro:arg name="end_effector" default="white" />
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/sda10f</robotNamespace>
+      <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType> 
+      <legacyModeNS>true</legacyModeNS>
+    </plugin>
+  </gazebo>
+ 
+  <xacro:include filename="$(find motoman_description)/urdf/sda10f_macro_gazebo.xacro" />
+	<xacro:motoman_sda10f prefix="" gripper="$(arg gripper)" end_effector="$(arg end_effector)"/>
+
+		<link name="world" />
+    <joint name="world_to_sda10f" type="fixed">
+        <origin xyz="0 0 0.0" rpy="0 0 0"/>
+        <parent link="world"/>
+        <child link="base_link"/>
+    </joint>
+
+
+</robot>

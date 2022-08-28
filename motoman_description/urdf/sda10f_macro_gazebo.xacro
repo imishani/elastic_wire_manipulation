@@ -1,0 +1,83 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  
+<!-- load robot-->
+  <xacro:include filename="$(find motoman_description)/urdf/common_torso_macro_gazebo.xacro" />
+  <xacro:include filename="$(find motoman_description)/urdf/arm_macro_gazebo.xacro" />
+
+  <xacro:macro name="motoman_sda10f" params="prefix gripper end_effector">
+
+
+    <xacro:torso name="${prefix}torso" prefix="${prefix}torso_"/>
+
+    <xacro:motoman_arm name="${prefix}arm_left" prefix="${prefix}arm_left_" parent="${prefix}torso_link_b1" reflect="1">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+    </xacro:motoman_arm>
+
+      <!-- gripper -->
+    <xacro:unless value="${not gripper}">
+      <xacro:include filename="$(find motoman_description)/grippers/${gripper}/bota_senseone.xacro" />
+<!--      <xacro:include filename="$(find motoman_description)/grippers/${gripper}/urdf/${gripper}_transmission_macro.xacro" />-->
+
+<!--        <xacro:load_gripper parent="${prefix}arm_left_${last_arm_link}"  prefix="${prefix}"/> -->
+      <xacro:load_gripper parent="arm_left_link_tool0" prefix="${prefix}" end_effector="${end_effector}"/>
+    </xacro:unless>
+    
+    
+    <xacro:motoman_arm name="${prefix}arm_right" prefix="${prefix}arm_right_" parent="${prefix}torso_link_b1" reflect="-1">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+    </xacro:motoman_arm>
+
+<!--    <xacro:include filename="$(find motoman_description)/grippers/robotiq_2f_85/urdf/cable_macro.xacro" />-->
+<!--      <xacro:load_cable parent="${prefix}arm_left_${last_arm_link}"  prefix="${prefix}"/> -->
+
+    <!-- <xacro:include filename="$(find motoman_description)/grippers/robotiq_2f_85/urdf/connect_cable_to_right_arm.xacro" />
+      <xacro:load_cable_right parent="${prefix}arm_right_${last_arm_link}"  prefix="${prefix}"/>  -->
+
+    <link name="right_cable_holder">
+        <visual>
+            <origin xyz="-0.04 -0.04 0.065" rpy="${-pi/2} 0 0" />
+            <geometry>
+                <mesh filename="package://motoman_description/grippers/right_cable_grip/meshes/visual/SDA10F_connector_cable_gripper.STL" scale="0.001 0.001 0.001"/>
+            </geometry>
+            <material name="transperent_black">
+                <color rgba="0 0 0 0.8"/>
+            </material>
+        </visual>
+    </link>
+
+    <joint name="arm_right_gripper_fix" type="fixed">
+        <parent link="arm_right_link_tool0" />
+        <child link="right_cable_holder" />
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+
+    <link name="right_cable_contact_pos"/>
+
+    <joint name="to_cable_joint2" type="fixed">
+        <parent link="right_cable_holder" />
+        <child link="right_cable_contact_pos" />
+        <origin xyz="0 0 0.065" rpy="${pi/2} ${-pi/2} 0"/>
+    </joint>
+
+    <!-- link list -->
+    <link name="${prefix}base_link" />
+
+    <!-- joint list -->
+    <joint name="${prefix}base_link_torso" type="fixed">
+      <parent link="${prefix}base_link"/>
+      <child link="${prefix}torso_base_link"/>
+      <origin xyz="0 0 1.2" rpy="0 0 0"/>
+    </joint>
+
+
+  </xacro:macro>
+
+  <!-- The following xacro is kept for backwards compatibility, it should not be used -->
+  <!-- see: https://github.com/ros-industrial/motoman/issues/166 -->
+  <xacro:macro name="sda10f">
+    <xacro:motoman_sda10f prefix=""/>
+  </xacro:macro>
+</robot>
+
+
