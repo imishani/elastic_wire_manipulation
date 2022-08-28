@@ -20,7 +20,7 @@ This launch file loads the entire system:
 2. Rviz
 3. Moveit
 4. Motion capture system [natent ros package](natnet_ros)
-5. F/T Sensor [bota driver](https://gitlab.com/imishani/bota_driver/edit#js-general-project-settings)
+5. F/T Sensor [bota driver](https://gitlab.com/imishani/bota_driver)
 
 * [natnet_ros](natnet_ros): Motion capture system package.
 * [motoman_description](motoman_description): Contains all description files of the system (URDF files).
