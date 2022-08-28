@@ -29,7 +29,8 @@ This launch file loads the entire system:
 * [natnet_ros](natnet_ros): Motion capture system package.
 * [motoman_description](motoman_description): Contains all description files of the system (URDF files).
 * [motoman_simulation](motoman_simulation): Rviz cable visualization scripts and robot movements and control scripts. See [motoman_simulation readme](motoman_simulation/README.md)
-* [motoman_cable](motoman_cable): Cable properties approximator, recorder and planner scripts.
+* [motoman_cable](motoman_cable): Cable properties approximator using PSO algorithm (Particle Swarm Optimization), recorder and [planner](motoman_cable/scripts/path_plan) (RRT and RRT*) scripts.
+
 Exapmle: 
 cable properties approximator
 ```sh
