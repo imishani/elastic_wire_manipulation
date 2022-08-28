@@ -34,7 +34,7 @@ Both this package and the library have CI for all supported platforms.
 ```
 mkdir -p catkin_ws/src/
 cd catkin_ws/src
-git clone --recursive https://github.com/robotau/natnet_ros.git
+git clone --recursive https://gitlab.com/imishani/natnet_ros.git
 cd ..
 rosdep install -y --from-paths src --ignore-src
 catkin_make
