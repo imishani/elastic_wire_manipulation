@@ -1,13 +1,3 @@
-"""
-
-Path planning Sample Code with RRT*
-
-author: Atsushi Sakai(@Atsushi_twi)
-
-https://github.com/AtsushiSakai/PythonRobotics
-
-"""
-
 import math
 import os
 import sys
