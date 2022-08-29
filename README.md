@@ -6,6 +6,11 @@ Partial code implementations of my thesis about dual arm robotic manipulation of
 
 **paper**: https://ieeexplore.ieee.org/abstract/document/9618864
 
+![](../../../../Downloads/robot_wire.jpeg)
+![](../../../../Downloads/est.png)
+![](../../../../Downloads/state2_n.png)
+
+
 ### Abstract
 Manipulation of wires has been a challenging task and main interest for many decades. There have been many attempts to use visual perception and image segmentation to perform wire manipulation. However, wire manipulation in a cluttered environment where there are many visual occlusions and uncertainties (due to poor lighting or shadows) is hard. Giving a robot the ability to manipulate wires with high certainty is necessary and requires rapid reasoning of its shape in real-time. Furthermore, after having this ability, planning and control of wire manipulations is required. However, there is no efficient ability to do so without visual perception. 
 
