@@ -6,7 +6,6 @@ Partial code implementations of my thesis about dual arm robotic manipulation of
 
 **paper**: https://ieeexplore.ieee.org/abstract/document/9618864
 
-![](/pic/robot_wire.jpeg)
 ![](/pic/est.png)
 ![](/pic/state2_n.png)
 
